@@ -105,7 +105,7 @@ function svbk_rcp_add_member_edit_company_fields( $user_id = 0 ) {
 	?>
 	<tr valign="top">
 		<th scope="row" valign="top">
-			<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php esc_html_e( 'Your Tax ID', 'svbk-rcp-company-details' ); ?></label>
+			<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php esc_html( $field_label ); ?></label>
 		</th>
 		<td>
 			<input name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>" type="text" value="<?php echo esc_attr( $field_value ); ?>"/>
@@ -116,7 +116,7 @@ function svbk_rcp_add_member_edit_company_fields( $user_id = 0 ) {
 	<?php
 	}
 }
-add_action( 'rcp_edit_member_after', 'svbk_rcp_add_member_edit_fields' );
+add_action( 'rcp_edit_member_after', 'svbk_rcp_add_member_edit_company_fields' );
 
 /**
  * Stores the information submitted during registration
