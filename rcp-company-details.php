@@ -43,6 +43,7 @@ function svbk_rcp_company_fields() {
 	);
 }
 
+
 /**
  * Adds the custom fields to the registration form and profile editor
  */
@@ -52,7 +53,7 @@ function svbk_rcp_add_company_fields() {
 	<section id="billing">
 		<header class="section-header">
 			<h2><?php esc_html_e( 'Billing Info', 'svbk-rcp-company-details' ) ?></h2>		
-			<p class="subtitle">Lorem ipsum</p>
+			<p class="subtitle">Compila i campi obbligatori (contrassegnati dall’asterisco*) con i tuoi dati.</p>
 		</header>
 		
 		<fieldset>
@@ -87,6 +88,7 @@ function svbk_rcp_print_company_fields() {
 		</p>								
 	<?php }
 }
+
 
 add_action( 'rcp_after_register_form_fields', 'svbk_rcp_add_company_fields', 8 );
 add_action( 'rcp_before_subscription_form_fields', 'svbk_rcp_add_company_fields', 8 );

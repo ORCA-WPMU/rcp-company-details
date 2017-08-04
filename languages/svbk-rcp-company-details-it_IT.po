@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Restrict Content Pro - Company Details\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-19 14:45+0000\n"
-"PO-Revision-Date: 2017-07-19 14:47+0000\n"
-"Last-Translator: Silverback Studio <webmaster@silverbackstudio.it>\n"
+"POT-Creation-Date: 2017-08-04 15:10+0000\n"
+"PO-Revision-Date: 2017-08-04 15:11+0000\n"
+"Last-Translator: Silverback <webmaster@silverbackstudio.it>\n"
 "Language-Team: Italian\n"
 "Language: it-IT\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
@@ -13,38 +13,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: rcp-company-details.php:24 rcp-company-details.php:96
+#: rcp-company-details.php:51
+msgid "First Name"
+msgstr "Nome"
+
+#: rcp-company-details.php:52
+msgid "Last Name"
+msgstr "Cognome"
+
+#: rcp-company-details.php:53
+msgid "Email"
+msgstr "Email"
+
+#: rcp-company-details.php:54
+msgid "Confirm Your Email"
+msgstr "Conferma la mail"
+
+#: rcp-company-details.php:55
+msgid "Phone Number"
+msgstr "Telefono"
+
+#: rcp-company-details.php:36
 msgid "Your Tax ID"
 msgstr "P.IVA"
 
-#: rcp-company-details.php:25
+#: rcp-company-details.php:37
 msgid "Company Name"
 msgstr "Ragione Sociale"
 
-#: rcp-company-details.php:26
+#: rcp-company-details.php:38
 msgid "Address"
 msgstr "Indirizzo"
 
-#: rcp-company-details.php:27
+#: rcp-company-details.php:39
 msgid "City"
 msgstr ""
 "Città\n"
 
-#: rcp-company-details.php:28
+#: rcp-company-details.php:40
 msgid "State/Province"
 msgstr "Provincia"
 
-#: rcp-company-details.php:29
+#: rcp-company-details.php:41
 msgid "Postal Code"
 msgstr "CAP"
 
-#: rcp-company-details.php:30
+#: rcp-company-details.php:42
 msgid "Country"
 msgstr "Paese"
 
-#: rcp-company-details.php:42 rcp-company-details.php:62
+#: rcp-company-details.php:67
+msgid "Personal Info"
+msgstr "Inserisci i tuoi dati"
+
+#: rcp-company-details.php:79 rcp-company-details.php:99
 msgid "Billing Info"
-msgstr "Informazioni di fatturazione"
+msgstr "Dati di fatturazione"
 
 #. Name of the plugin
 msgid "Restrict Content Pro - Company Details"
