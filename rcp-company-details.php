@@ -157,3 +157,26 @@ function svbk_rcp_save_user_fields_on_profile_save( $user_id ) {
 }
 add_action( 'rcp_user_profile_updated', 'svbk_rcp_save_user_fields_on_profile_save', 10 );
 add_action( 'rcp_edit_member', 'svbk_rcp_save_user_fields_on_profile_save', 10 );
+
+
+/**
+ * Require first and last names during registration
+ * 
+ * @param array $posted Array of information sent to the form.
+ * 
+ * @return void
+ */
+function svbk_rcp_require_first_and_last_names( $posted ) {
+	if( is_user_logged_in() ) {
+		return;
+	}
+	
+	if( empty( $posted['rcp_user_first'] ) ) {
+		rcp_errors()->add( 'first_name_required', __( 'Please enter your first name', 'svbk-rcp-company-details' ), 'register'  );
+	}
+	if( empty( $posted['rcp_user_last'] ) ) {
+		rcp_errors()->add( 'last_name_required', __( 'Please enter your last name', 'svbk-rcp-company-details' ), 'register'  );
+	}
+}
+add_action( 'rcp_form_errors', 'svbk_rcp_require_first_and_last_names' );
+

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Restrict Content Pro - Company Details\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-04 15:10+0000\n"
-"PO-Revision-Date: 2017-08-07 07:18+0000\n"
+"POT-Creation-Date: 2017-08-07 09:00+0000\n"
+"PO-Revision-Date: 2017-08-07 09:01+0000\n"
 "Last-Translator: Silverback <webmaster@silverbackstudio.it>\n"
 "Language-Team: Italian\n"
 "Language: it-IT\n"
@@ -13,25 +13,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: rcp-company-details.php:51
-msgid "First Name"
-msgstr "Nome"
+#: rcp-company-details.php:175
+msgid "Please enter your first name"
+msgstr "Inserisci nome"
 
-#: rcp-company-details.php:52
-msgid "Last Name"
-msgstr "Cognome"
-
-#: rcp-company-details.php:53
-msgid "Email"
-msgstr "Email"
-
-#: rcp-company-details.php:54
-msgid "Confirm Your Email"
-msgstr "Conferma la mail"
-
-#: rcp-company-details.php:55
-msgid "Phone Number"
-msgstr "Telefono"
+#: rcp-company-details.php:178
+msgid "Please enter your last name"
+msgstr "Inserisci cognome"
 
 #: rcp-company-details.php:36
 msgid "Your Tax ID"
@@ -62,11 +50,7 @@ msgstr "CAP"
 msgid "Country"
 msgstr "Paese"
 
-#: rcp-company-details.php:67
-msgid "Personal Info"
-msgstr "Inserisci i tuoi dati"
-
-#: rcp-company-details.php:79 rcp-company-details.php:99
+#: rcp-company-details.php:55 rcp-company-details.php:75
 msgid "Billing Info"
 msgstr "Dati di fatturazione "
 

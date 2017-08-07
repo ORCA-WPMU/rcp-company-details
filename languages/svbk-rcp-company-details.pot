@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-04 15:10+0000\n"
+"POT-Creation-Date: 2017-08-07 09:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -42,32 +42,16 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: rcp-company-details.php:51
-msgid "First Name"
-msgstr ""
-
-#: rcp-company-details.php:52
-msgid "Last Name"
-msgstr ""
-
-#: rcp-company-details.php:53
-msgid "Email"
-msgstr ""
-
-#: rcp-company-details.php:54
-msgid "Confirm Your Email"
-msgstr ""
-
-#: rcp-company-details.php:55
-msgid "Phone Number"
-msgstr ""
-
-#: rcp-company-details.php:67
-msgid "Personal Info"
-msgstr ""
-
-#: rcp-company-details.php:79 rcp-company-details.php:99
+#: rcp-company-details.php:55 rcp-company-details.php:75
 msgid "Billing Info"
+msgstr ""
+
+#: rcp-company-details.php:175
+msgid "Please enter your first name"
+msgstr ""
+
+#: rcp-company-details.php:178
+msgid "Please enter your last name"
 msgstr ""
 
 #. Name of the plugin
