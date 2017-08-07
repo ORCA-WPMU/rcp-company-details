@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Restrict Content Pro - Company Details\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-04 15:10+0000\n"
-"PO-Revision-Date: 2017-08-04 15:11+0000\n"
+"PO-Revision-Date: 2017-08-07 07:18+0000\n"
 "Last-Translator: Silverback <webmaster@silverbackstudio.it>\n"
 "Language-Team: Italian\n"
 "Language: it-IT\n"
@@ -68,7 +68,7 @@ msgstr "Inserisci i tuoi dati"
 
 #: rcp-company-details.php:79 rcp-company-details.php:99
 msgid "Billing Info"
-msgstr "Dati di fatturazione"
+msgstr "Dati di fatturazione "
 
 #. Name of the plugin
 msgid "Restrict Content Pro - Company Details"
