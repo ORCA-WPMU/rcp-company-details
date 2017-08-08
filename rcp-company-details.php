@@ -35,6 +35,7 @@ function svbk_rcp_company_fields() {
 	return array(
 		'tax_id' => __( 'Your Tax ID', 'svbk-rcp-company-details' ),
 		'company_name' => __( 'Company Name', 'svbk-rcp-company-details' ),
+		'tax_code' => __( 'Tax Code', 'svbk-rcp-company-details' ),             /* added */
 		'billing_address' => __( 'Address', 'svbk-rcp-company-details' ),
 		'biling_city' => __( 'City', 'svbk-rcp-company-details' ),
 		'billing_state' => __( 'State/Province', 'svbk-rcp-company-details' ),
@@ -84,8 +85,18 @@ function svbk_rcp_print_company_fields() {
 		$field_value = get_user_meta( get_current_user_id(), $field_name, true ); ?>
 		<p>
 			<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php echo esc_attr( $field_label ); ?></label>
+			<?php 
+			if ( ( 'billing_country' === $field_name ) && ( $countries = apply_filters( 'svbk_rcp_company_details_countries', array() ) ) ): ?>			
+			<select  name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>">
+				<option value="" <?php selected( '', $field_value ) ?>><?php echo esc_html__( '- Select -', 'svbk-rcp-company-details' ); ?></option>
+				<?php foreach( $countries as $country ) : ?>
+					<option value="<?php echo esc_attr( $country ); ?>" <?php selected( $country, $field_value ) ?>><?php echo esc_html( $country ) ?></option>
+				<?php endforeach; ?>
+			</select>
+			<?php else: ?>
 			<input name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>" type="text" value="<?php echo esc_attr( $field_value ); ?>"/>
-		</p>								
+			<?php endif; ?>
+		</p>
 	<?php }
 }
 
@@ -103,16 +114,27 @@ function svbk_rcp_add_member_edit_company_fields( $user_id = 0 ) {
 
 	foreach ( svbk_rcp_company_fields() as $field_name => $field_label ) {
 
-	$field_value = get_user_meta( $user_id, 'rcp_' . $field_name, true );
-	?>
+	$field_value = get_user_meta( $user_id, 'rcp_' . $field_name, true ); ?>
 	<tr valign="top">
 		<th scope="row" valign="top">
 			<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php esc_html( $field_label ); ?></label>
 		</th>
+		<?php 
+		if ( ( 'billing_country' === $field_name ) && ( $countries = apply_filters( 'svbk_rcp_company_details_countries', array() ) ) ): ?>
+		<td>
+			<select  name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>">
+				<?php foreach( $countries as $country ) : ?>
+					<option value="<?php echo esc_attr( $country ); ?>" <?php selected( $country, $field_value ) ?>><?php echo esc_html( $country ) ?></option>
+				<?php endforeach; ?>
+			</select>				
+			<p class="description"><?php echo esc_attr( $field_label ); ?></p>
+		</td>		
+		<?php else: ?>
 		<td>
 			<input name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>" type="text" value="<?php echo esc_attr( $field_value ); ?>"/>
 			<p class="description"><?php echo esc_attr( $field_label ); ?></p>
-		</td>
+		</td>		
+		<?php endif; ?>
 	</tr>
 
 	<?php
@@ -180,3 +202,67 @@ function svbk_rcp_require_first_and_last_names( $posted ) {
 }
 add_action( 'rcp_form_errors', 'svbk_rcp_require_first_and_last_names' );
 
+
+/**
+ * Require other fields if tax_id and company_name are set during registration
+ * 
+ * @param array $posted ( Array of information sent to the form. )
+ * 
+ * @return void
+ */
+function svbk_rcp_require_fields_if_tax_id( $posted ) {
+	
+	if( is_user_logged_in() ) {
+		return;
+	}
+
+	// if these inputs are set, require all other fields.
+    if( $posted['rcp_tax_id'] && $posted['rcp_company_name'] ){                 
+    
+        if( empty( $posted['rcp_billing_address'] ) ) {                      
+            rcp_errors()->add( 'billing_address_required', __( 'Please enter your billing address', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_biling_city'] ) ) {                      
+            rcp_errors()->add( 'billing_city_required', __( 'Please enter your billing city', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_billing_state'] ) ) {                      
+            rcp_errors()->add( 'billing_state_required', __( 'Please enter your billing state', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_billing_postal_code'] ) ) {                      
+            rcp_errors()->add( 'billing_postal_code_required', __( 'Please enter your billing postal code', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_billing_country'] ) ) {                      
+            rcp_errors()->add( 'billing_country_required', __( 'Please select your billing country', 'svbk-rcp-company-details' ), 'register'  );
+        }
+    }
+}
+add_action( 'rcp_form_errors', 'svbk_rcp_require_fields_if_tax_id' ); 
+
+
+function svbk_rcp_require_fields_if_tax_code( $posted ) {
+	
+	if( is_user_logged_in() ) {
+		return;
+	}
+
+	// if these inputs are set, require all other fields.
+    if( $posted['rcp_tax_code']){                                              
+    
+        if( empty( $posted['rcp_billing_address'] ) ) {                      
+            rcp_errors()->add( 'billing_address_required', __( 'Please enter your billing address', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_biling_city'] ) ) {                      
+            rcp_errors()->add( 'billing_city_required', __( 'Please enter your billing city', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_billing_state'] ) ) {                      
+            rcp_errors()->add( 'billing_state_required', __( 'Please enter your billing state', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_billing_postal_code'] ) ) {                      
+            rcp_errors()->add( 'billing_postal_code_required', __( 'Please enter your billing postal code', 'svbk-rcp-company-details' ), 'register'  );
+        }
+        if( empty( $posted['rcp_billing_country'] ) ) {                      
+            rcp_errors()->add( 'billing_country_required', __( 'Please select your billing country', 'svbk-rcp-company-details' ), 'register'  );
+        }
+    }
+}
+add_action( 'rcp_form_errors', 'svbk_rcp_require_fields_if_tax_code' ); 

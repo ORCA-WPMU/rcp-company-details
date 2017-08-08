@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-07 09:00+0000\n"
+"POT-Creation-Date: 2017-08-08 14:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -23,35 +23,59 @@ msgid "Company Name"
 msgstr ""
 
 #: rcp-company-details.php:38
-msgid "Address"
+msgid "Tax Code"
 msgstr ""
 
 #: rcp-company-details.php:39
-msgid "City"
+msgid "Address"
 msgstr ""
 
 #: rcp-company-details.php:40
-msgid "State/Province"
+msgid "City"
 msgstr ""
 
 #: rcp-company-details.php:41
-msgid "Postal Code"
+msgid "State/Province"
 msgstr ""
 
 #: rcp-company-details.php:42
+msgid "Postal Code"
+msgstr ""
+
+#: rcp-company-details.php:43
 msgid "Country"
 msgstr ""
 
-#: rcp-company-details.php:55 rcp-company-details.php:75
+#: rcp-company-details.php:56 rcp-company-details.php:76
 msgid "Billing Info"
 msgstr ""
 
-#: rcp-company-details.php:175
+#: rcp-company-details.php:91
+msgid "- Select -"
+msgstr ""
+
+#: rcp-company-details.php:197
 msgid "Please enter your first name"
 msgstr ""
 
-#: rcp-company-details.php:178
+#: rcp-company-details.php:200
 msgid "Please enter your last name"
+msgstr ""
+
+#: rcp-company-details.php:223 rcp-company-details.php:249
+msgid "Please enter your billing address"
+msgstr ""
+
+#: rcp-company-details.php:226 rcp-company-details.php:252
+msgid "Please enter your billing city"
+msgstr ""
+
+#: rcp-company-details.php:229 rcp-company-details.php:255
+msgid "Please enter your billing state"
+msgstr ""
+
+#: rcp-company-details.php:232 rcp-company-details.php:258
+msgid "Please enter your billing postal code"
 msgstr ""
 
 #. Name of the plugin

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Restrict Content Pro - Company Details\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-07 09:00+0000\n"
-"PO-Revision-Date: 2017-08-07 09:01+0000\n"
-"Last-Translator: Silverback <webmaster@silverbackstudio.it>\n"
+"POT-Creation-Date: 2017-08-08 07:44+0000\n"
+"PO-Revision-Date: 2017-08-08 14:54+0000\n"
+"Last-Translator: silverbackstudio <webmaster@silverbackstudio.it>\n"
 "Language-Team: Italian\n"
 "Language: it-IT\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
@@ -13,13 +13,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: rcp-company-details.php:175
-msgid "Please enter your first name"
-msgstr "Inserisci nome"
+#: rcp-company-details.php:221
+msgid "Please enter your billing address"
+msgstr "Per favore inserisci l'indirizzo"
 
-#: rcp-company-details.php:178
-msgid "Please enter your last name"
-msgstr "Inserisci cognome"
+#: rcp-company-details.php:224
+msgid "Please enter your billing city"
+msgstr "Per favore inserisci la città"
+
+#: rcp-company-details.php:227
+msgid "Please enter your billing state"
+msgstr "Per favore inserisci la provincia"
+
+#: rcp-company-details.php:230
+msgid "Please enter your billing postal code"
+msgstr "Per favore inserisci il CAP"
+
+#: rcp-company-details.php:233
+msgid "Please select your billing country"
+msgstr "Per favore seleziona il paese"
 
 #: rcp-company-details.php:36
 msgid "Your Tax ID"
@@ -30,29 +42,41 @@ msgid "Company Name"
 msgstr "Ragione Sociale"
 
 #: rcp-company-details.php:38
+msgid "Tax Code"
+msgstr "Codice Fiscale (solo per persona fisica)"
+
+#: rcp-company-details.php:39
 msgid "Address"
 msgstr "Indirizzo"
 
-#: rcp-company-details.php:39
+#: rcp-company-details.php:40
 msgid "City"
 msgstr ""
 "Città\n"
 
-#: rcp-company-details.php:40
+#: rcp-company-details.php:41
 msgid "State/Province"
 msgstr "Provincia"
 
-#: rcp-company-details.php:41
+#: rcp-company-details.php:42
 msgid "Postal Code"
 msgstr "CAP"
 
-#: rcp-company-details.php:42
+#: rcp-company-details.php:43
 msgid "Country"
 msgstr "Paese"
 
-#: rcp-company-details.php:55 rcp-company-details.php:75
+#: rcp-company-details.php:56 rcp-company-details.php:76
 msgid "Billing Info"
 msgstr "Dati di fatturazione "
+
+#: rcp-company-details.php:196
+msgid "Please enter your first name"
+msgstr "Inserisci nome"
+
+#: rcp-company-details.php:199
+msgid "Please enter your last name"
+msgstr "Inserisci cognome"
 
 #. Name of the plugin
 msgid "Restrict Content Pro - Company Details"
