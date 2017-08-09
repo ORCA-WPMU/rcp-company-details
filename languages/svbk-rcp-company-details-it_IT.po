@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Restrict Content Pro - Company Details\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-08 07:44+0000\n"
-"PO-Revision-Date: 2017-08-08 14:54+0000\n"
+"POT-Creation-Date: 2017-08-09 13:36+0000\n"
+"PO-Revision-Date: 2017-08-09 13:39+0000\n"
 "Last-Translator: silverbackstudio <webmaster@silverbackstudio.it>\n"
 "Language-Team: Italian\n"
 "Language: it-IT\n"
@@ -13,25 +13,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: rcp-company-details.php:221
-msgid "Please enter your billing address"
-msgstr "Per favore inserisci l'indirizzo"
+#: rcp-company-details.php:112
+msgid "- Select -"
+msgstr ""
 
-#: rcp-company-details.php:224
-msgid "Please enter your billing city"
-msgstr "Per favore inserisci la città"
-
-#: rcp-company-details.php:227
-msgid "Please enter your billing state"
-msgstr "Per favore inserisci la provincia"
-
-#: rcp-company-details.php:230
-msgid "Please enter your billing postal code"
-msgstr "Per favore inserisci il CAP"
-
-#: rcp-company-details.php:233
+#: rcp-company-details.php:254
 msgid "Please select your billing country"
 msgstr "Per favore seleziona il paese"
+
+#: rcp-company-details.php:275
+msgid "Please enter your tax id or tax code"
+msgstr "Per favore inserisci la P.IVA oppure il Codice Fiscale"
+
+#: rcp-company-details.php:295
+msgid "Please enter your company name"
+msgstr "Per favore inserisci la ragione sociale"
 
 #: rcp-company-details.php:36
 msgid "Your Tax ID"
@@ -70,13 +66,29 @@ msgstr "Paese"
 msgid "Billing Info"
 msgstr "Dati di fatturazione "
 
-#: rcp-company-details.php:196
+#: rcp-company-details.php:221
 msgid "Please enter your first name"
 msgstr "Inserisci nome"
 
-#: rcp-company-details.php:199
+#: rcp-company-details.php:224
 msgid "Please enter your last name"
 msgstr "Inserisci cognome"
+
+#: rcp-company-details.php:242
+msgid "Please enter your billing address"
+msgstr "Per favore inserisci l'indirizzo"
+
+#: rcp-company-details.php:245
+msgid "Please enter your billing city"
+msgstr "Per favore inserisci la città"
+
+#: rcp-company-details.php:248
+msgid "Please enter your billing state"
+msgstr "Per favore inserisci la provincia"
+
+#: rcp-company-details.php:251
+msgid "Please enter your billing postal code"
+msgstr "Per favore inserisci il CAP"
 
 #. Name of the plugin
 msgid "Restrict Content Pro - Company Details"
