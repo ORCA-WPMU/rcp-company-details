@@ -54,7 +54,7 @@ function svbk_rcp_add_company_fields() {
 	<section id="billing">
 		<header class="section-header">
 			<h2><?php esc_html_e( 'Billing Info', 'svbk-rcp-company-details' ) ?></h2>		
-			<p class="subtitle">Compila i campi obbligatori (contrassegnati dall’asterisco*) con i tuoi dati.</p>
+			<p class="subtitle">Compila i campi necessari per la fatturazione con i tuoi dati.</p>
 		</header>
 		
 		<fieldset>
@@ -114,7 +114,7 @@ function svbk_rcp_add_member_edit_company_fields( $user_id = 0 ) {
 
 	foreach ( svbk_rcp_company_fields() as $field_name => $field_label ) {
 
-	$field_value = get_user_meta( $user_id, 'rcp_' . $field_name, true ); ?>
+	$field_value = get_user_meta( $user_id, $field_name, true ); ?>
 	<tr valign="top">
 		<th scope="row" valign="top">
 			<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php esc_html( $field_label ); ?></label>
