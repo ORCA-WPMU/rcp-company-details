@@ -97,6 +97,7 @@ function svbk_rcp_print_company_fields() {
             </div>
             
          <?php elseif( 'tax_code' === $field_name ): ?>
+               <p class="choose_block"><?php esc_html_e( 'Or','svbk-rcp-company-details' ); ?></p>
                <div class="tax_block"> 
                 <p>
 					<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php echo esc_attr( $field_label ); ?></label>
