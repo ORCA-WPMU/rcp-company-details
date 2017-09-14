@@ -35,7 +35,8 @@ function svbk_rcp_company_fields() {
 	return array(
 		'tax_id' => __( 'Your Tax ID', 'svbk-rcp-company-details' ),
 		'company_name' => __( 'Company Name', 'svbk-rcp-company-details' ),
-		'tax_code' => __( 'Tax Code', 'svbk-rcp-company-details' ),             /* added */
+		'tax_code' => __( 'Tax Code', 'svbk-rcp-company-details' ),
+		'company_phone' => __( 'Phone', 'svbk-rcp-company-details' ),
 		'billing_address' => __( 'Address', 'svbk-rcp-company-details' ),
 		'biling_city' => __( 'City', 'svbk-rcp-company-details' ),
 		'billing_state' => __( 'State/Province', 'svbk-rcp-company-details' ),
@@ -54,7 +55,7 @@ function svbk_rcp_add_company_fields() {
 	<section id="billing">
 		<header class="section-header">
 			<h2><?php esc_html_e( 'Billing Info', 'svbk-rcp-company-details' ) ?></h2>		
-			<p class="subtitle">Compila i campi obbligatori (contrassegnati dall’asterisco *) con i tuoi dati.</p>
+			<p class="subtitle"><?php esc_html_e( 'Fields with * are required', 'svbk-rcp-company-details' ); ?></p>
 		</header>
 		
 		<fieldset>
@@ -81,30 +82,13 @@ function svbk_rcp_profile_company_fields() {
  * Adds the custom fields to the registration form and profile editor
  */
 function svbk_rcp_print_company_fields() {
-	foreach ( svbk_rcp_company_fields() as $field_name => $field_label ) {
+
+	$fields = svbk_rcp_company_fields();
+
+	foreach ( $fields as $field_name => $field_label ) {
 		$field_value = get_user_meta( get_current_user_id(), $field_name, true ); ?>
-		<?php if( 'tax_id' === $field_name ): ?>
-		   <div class="tax_block">                      	<!-- added -->
-			   	<p>
-					<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php echo esc_attr( $field_label ); ?></label>
-					<input name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>" type="text" value="<?php echo esc_attr( $field_value ); ?>"/>
-				</p>
-        <?php elseif( 'company_name' === $field_name ): ?>
-                <p>
-					<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php echo esc_attr( $field_label ); ?></label>
-					<input name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>" type="text" value="<?php echo esc_attr( $field_value ); ?>"/>
-				</p>
-            </div>
-            
-         <?php elseif( 'tax_code' === $field_name ): ?>
-               <p class="choose_block"><?php esc_html_e( 'Or','svbk-rcp-company-details' ); ?></p>
-               <div class="tax_block"> 
-                <p>
-					<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php echo esc_attr( $field_label ); ?></label>
-					<input name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>" type="text" value="<?php echo esc_attr( $field_value ); ?>"/>
-				</p>
-               </div>
-        <?php else: ?>
+		
+			<?php do_action('svbk_rcp_company_field_before', $field_name, $field_value, $field_label); ?>
 			 <p>
 				<label for="rcp_<?php echo esc_attr( $field_name ); ?>"><?php echo esc_attr( $field_label ); ?></label>
 				<?php 
@@ -119,11 +103,10 @@ function svbk_rcp_print_company_fields() {
 				<input name="rcp_<?php echo esc_attr( $field_name ); ?>" id="rcp_<?php echo esc_attr( $field_name ); ?>" type="text" value="<?php echo esc_attr( $field_value ); ?>"/>
 				<?php endif; ?>
 			</p>
-		  <?php endif; ?>
+			<?php do_action('svbk_rcp_company_field_after', $field_name, $field_value, $field_label); ?>
+				
 	<?php }
 }
-
-
 
 
 add_action( 'rcp_after_register_form_fields', 'svbk_rcp_add_company_fields', 8 );
@@ -137,7 +120,9 @@ add_action( 'rcp_profile_editor_after', 'svbk_rcp_profile_company_fields', 8 );
  */
 function svbk_rcp_add_member_edit_company_fields( $user_id = 0 ) {
 
-	foreach ( svbk_rcp_company_fields() as $field_name => $field_label ) {
+	$fields = svbk_rcp_company_fields();
+
+	foreach ( $fields as $field_name => $field_label ) {
 
 	$field_value = get_user_meta( $user_id, $field_name, true ); ?>
 	<tr valign="top">
@@ -175,7 +160,9 @@ add_action( 'rcp_edit_member_after', 'svbk_rcp_add_member_edit_company_fields' )
  */
 function svbk_rcp_save_company_fields_on_register( $posted, $user_id ) {
 
-	foreach ( svbk_rcp_company_fields() as $field_name => $field_label ) {
+	$fields = svbk_rcp_company_fields();
+
+	foreach ( $fields as $field_name => $field_label ) {
 		if ( ! empty( $posted[ 'rcp_' . $field_name ] ) ) {
 			update_user_meta( $user_id, $field_name, sanitize_text_field( $posted[ 'rcp_' . $field_name ] ) );
 		}
@@ -298,9 +285,49 @@ function svbk_rcp_require_company_name_if_vat( $posted ) {
 }
 add_action( 'rcp_form_errors', 'svbk_rcp_require_company_name_if_vat' );
 
+add_filter('rcp_email_template_tags', 'svbk_rcp_company_fields_email_tags', 10, 2);
 
+/**
+ * Append company info email tags
+ * 
+ * @param array $email_tags Array of existing tags.
+ * @param array $email_tags Array of existing tags.
+ * 
+ * @return array
+ */
+function svbk_rcp_company_fields_email_tags( $email_tags, $email ) {
+	
+	$fields = svbk_rcp_company_fields();
+	
+	foreach( $fields as $field_name => $field_label ) {
+		
+		$email_tags[] = array(
+			'tag'         => $field_name,
+			'description' => $field_label,
+			'function'    => 'svbk_rcp_company_fields_email_tags_value'
+		);
+		
+	}
+	
+	return $email_tags;
+	
+}
 
-
+/**
+ * Email template tag: firstname
+ * Returns the requested tag value
+ *
+ * @since 2.7
+ * @param int $member_id
+ * @param int $payment_id
+ * @param int $tag
+ * @return string 
+ */
+function svbk_rcp_company_fields_email_tags_value( $member_id = 0, $payment_id = 0, $tag ) {
+	
+	return get_user_meta( $member_id, $tag, true );
+	
+}
 
 
 
