@@ -73,7 +73,7 @@ function svbk_rcp_profile_company_fields() {
 	?>
 	
 	</fieldset>
-	<fieldset>
+	<fieldset id="billing-info">
 		<legend><?php esc_html_e( 'Billing Info', 'svbk-rcp-company-details' ); ?></legend>
 		<?php svbk_rcp_print_company_fields();
 }
