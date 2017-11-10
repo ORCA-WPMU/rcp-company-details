@@ -81,7 +81,7 @@ function svbk_rcp_profile_company_fields() {
 /**
  * Adds the custom fields to the registration form and profile editor
  */
-function svbk_rcp_print_company_fields() {
+function svbk_rcp_print_company_fields($user_id = null) {
 
 	$fields = svbk_rcp_company_fields();
 
@@ -178,10 +178,6 @@ add_action( 'rcp_form_processing', 'svbk_rcp_save_company_fields_on_register', 1
  */
 function svbk_rcp_save_user_fields_on_profile_save( $user_id ) {
 
-	if ( ! wp_verify_nonce( $_POST['rcp_profile_editor_nonce'], 'rcp-profile-editor-nonce' ) ) {
-		return false;
-	}
-
 	foreach ( svbk_rcp_company_fields() as $field_name => $field_label ) {
 		if ( ! empty( $_POST[ 'rcp_' . $field_name ] ) ) {
 			update_user_meta( $user_id, $field_name, sanitize_text_field( $_POST[ 'rcp_' . $field_name ] ) );
@@ -226,21 +222,21 @@ function svbk_rcp_require_billing_data( $posted ) {
 		return;
 	}
 	
-	   if( empty( $posted['rcp_billing_address'] ) ) {                      
-            rcp_errors()->add( 'billing_address_required', __( 'Please enter your billing address', 'svbk-rcp-company-details' ), 'register'  );
-        }
-        if( empty( $posted['rcp_biling_city'] ) ) {                      
-            rcp_errors()->add( 'billing_city_required', __( 'Please enter your billing city', 'svbk-rcp-company-details' ), 'register'  );
-        }
-        if( empty( $posted['rcp_billing_state'] ) ) {                      
-            rcp_errors()->add( 'billing_state_required', __( 'Please enter your billing state', 'svbk-rcp-company-details' ), 'register'  );
-        }
-        if( empty( $posted['rcp_billing_postal_code'] ) ) {                      
-            rcp_errors()->add( 'billing_postal_code_required', __( 'Please enter your billing postal code', 'svbk-rcp-company-details' ), 'register'  );
-        }
-        if( empty( $posted['rcp_billing_country'] ) ) {                      
-            rcp_errors()->add( 'billing_country_required', __( 'Please select your billing country', 'svbk-rcp-company-details' ), 'register'  );
-        }
+	if( empty( $posted['rcp_billing_address'] ) ) {                      
+	    rcp_errors()->add( 'billing_address_required', __( 'Please enter your billing address', 'svbk-rcp-company-details' ), 'register'  );
+	}
+	if( empty( $posted['rcp_biling_city'] ) ) {                      
+	    rcp_errors()->add( 'billing_city_required', __( 'Please enter your billing city', 'svbk-rcp-company-details' ), 'register'  );
+	}
+	if( empty( $posted['rcp_billing_state'] ) ) {                      
+	    rcp_errors()->add( 'billing_state_required', __( 'Please enter your billing state', 'svbk-rcp-company-details' ), 'register'  );
+	}
+	if( empty( $posted['rcp_billing_postal_code'] ) ) {                      
+	    rcp_errors()->add( 'billing_postal_code_required', __( 'Please enter your billing postal code', 'svbk-rcp-company-details' ), 'register'  );
+	}
+	if( empty( $posted['rcp_billing_country'] ) ) {                      
+	    rcp_errors()->add( 'billing_country_required', __( 'Please select your billing country', 'svbk-rcp-company-details' ), 'register'  );
+	}
 }
 add_action( 'rcp_form_errors', 'svbk_rcp_require_billing_data' );
 
@@ -259,9 +255,9 @@ function svbk_rcp_require_one_tax_field( $posted ) {
 		return;
 	}
 	
-	   if( empty( $posted['rcp_tax_id'] ) && empty( $posted['rcp_tax_code'] ) ) {                      
-            rcp_errors()->add( 'tax_parameter_required', __( 'Please enter your tax id or tax code', 'svbk-rcp-company-details' ), 'register'  );
-        }
+	if( empty( $posted['rcp_tax_id'] ) && empty( $posted['rcp_tax_code'] ) ) {                      
+	    rcp_errors()->add( 'tax_parameter_required', __( 'Please enter your tax id or tax code', 'svbk-rcp-company-details' ), 'register'  );
+	}
 }
 add_action( 'rcp_form_errors', 'svbk_rcp_require_one_tax_field' );
 
