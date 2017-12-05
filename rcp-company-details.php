@@ -354,12 +354,13 @@ function svbk_rcp_export_member_row( $data, $member ) {
 	
 	$fields = svbk_rcp_company_fields();
 	
-	$all_user_meta = array_map( function( $a ){ return $a[0]; }, get_user_meta( $member->ID ) );
+	$all_user_meta = get_user_meta( $member->ID );
 	
-	$company_details = array_intersect_key($all_user_meta, $fields);
-
-	return $data + $company_details;
-
+	foreach ($fields as $field_name => $field_label) {
+		 $data[$field_name] = isset($all_user_meta[$field_name]) ? $all_user_meta[$field_name][0] : '';
+	}
+	
+	return $data;
 }
 
 
