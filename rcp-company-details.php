@@ -178,7 +178,9 @@ add_action( 'rcp_form_processing', 'svbk_rcp_save_company_fields_on_register', 1
  */
 function svbk_rcp_save_user_fields_on_profile_save( $user_id ) {
 
-	foreach ( svbk_rcp_company_fields() as $field_name => $field_label ) {
+	$fields = svbk_rcp_company_fields();
+
+	foreach ( $fields as $field_name => $field_label ) {
 		if ( ! empty( $_POST[ 'rcp_' . $field_name ] ) ) {
 			update_user_meta( $user_id, $field_name, sanitize_text_field( $_POST[ 'rcp_' . $field_name ] ) );
 		}
@@ -325,6 +327,40 @@ function svbk_rcp_company_fields_email_tags_value( $member_id = 0, $payment_id =
 	
 }
 
+add_filter( 'rcp_export_csv_cols_members' , 'svbk_rcp_export_fields_cols', 10 ,1 );
+
+/**
+ * Add Company Details columns to header
+ *
+ * @since 1.1
+ * @param array $cols The existing member
+ * @return array 
+ */
+function svbk_rcp_export_fields_cols( $cols ) {
+	return $cols + svbk_rcp_company_fields();
+}
+
+add_filter( 'rcp_export_members_get_data_row' , 'svbk_rcp_export_member_row', 10, 2 );
+
+/**
+ * Add Company Details columns from member row
+ *
+ * @since 1.1
+ * @param array $data The existing data
+ * @param array $member The current row member object 
+ * @return array 
+ */
+function svbk_rcp_export_member_row( $data, $member ) {
+	
+	$fields = svbk_rcp_company_fields();
+	
+	$all_user_meta = array_map( function( $a ){ return $a[0]; }, get_user_meta( $member->ID ) );
+	
+	$company_details = array_intersect_key($all_user_meta, $fields);
+
+	return $data + $company_details;
+
+}
 
 
 

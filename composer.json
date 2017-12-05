@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "beta",
     "require-dev": {
+        "restrictcontentpro/restrict-content-pro": "^2.9.6",        
         "wimg/php-compatibility": "^7.1",
         "squizlabs/php_codesniffer": "^2.0"
     }
